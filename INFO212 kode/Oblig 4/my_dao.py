@@ -10,9 +10,6 @@ def _get_connection() -> Driver:
     driver.verify_connectivity()
     return driver
 
-    driver = GraphDatabase.driver(AURA_CONNECTION_URI,auth=(AURA_USERNAME, AURA_PASSWORD))
-
-
 
 def node_to_json(node):
     node_properties = dict(node.items())
@@ -53,7 +50,6 @@ def update_car(make, model, reg, year, capacity):
 def delete_car(reg):
     _get_connection().execute_query("MATCH (a:Car{reg: $reg}) delete a;", reg =reg)
 
-_get_connection()
 
 result = save_car(make="Toyota", model="Camry", reg="XYZ123", year=2023, capacity=5)
 print(result)
