@@ -9,7 +9,6 @@ def query_records():
     return findAllCars()
 
 
-
 # The method uses the registration number to find the car
 # object from database
 @app.route('/get_cars_by_reg_number', methods=['POST']) 
@@ -44,3 +43,7 @@ def delete_car_info():
     print(record)
     delete_car(record['reg'])
     return findAllCars()
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
