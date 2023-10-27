@@ -11,7 +11,7 @@ def query_records():
 
 # The method uses the registration number to find the car
 # object from database
-@app.route('/get_cars_by_reg_number', methods=['POST']) 
+@app.route('/get_cars_by_reg_number', methods=['POST'])
 def find_car_by_reg_number():
     record = json.loads(request.data)
     print(record)
@@ -28,6 +28,8 @@ def save_car_info():
 # The method uses the registration number to find the car
 # object from database and updates other informaiton from
 # the information provided as input in the json object
+
+
 @app.route('/update_car', methods=['PUT'])
 def update_car_info():
     record = json.loads(request.data)
@@ -43,7 +45,3 @@ def delete_car_info():
     print(record)
     delete_car(record['reg'])
     return findAllCars()
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
