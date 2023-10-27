@@ -45,3 +45,5 @@ def delete_car_info():
     print(record)
     delete_car(record['reg'])
     return findAllCars()
+
+
