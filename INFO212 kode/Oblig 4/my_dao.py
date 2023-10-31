@@ -50,6 +50,14 @@ def update_car(make, model, reg, year, capacity):
 def delete_car(reg):
     _get_connection().execute_query("MATCH (a:Car{reg: $reg}) delete a;", reg =reg)
 
+def customer(name, age, adress):
+    customer = _get_connection().execute_query("MERGE (a:Customer{name: $name, age: $age, adress: $adress}) RETURN a;", name = name, age = age, adress = adress)
+    nodes_json = [node_to_json(record["a"]) for record in customer]
+    print(nodes_json)
+    return nodes_json
 
-result = save_car(make="Toyota", model="Camry", reg="XYZ123", year=2023, capacity=5)
-print(result)
+
+# result = save_car(make="Toyota", model="Camry", reg="XYZ123", year=2023, capacity=5)
+# print(result)
+
+#customer(name='Per Hansen', age='24', adress='Skolegaten 1b, 2348 Skolebyem')
