@@ -103,3 +103,4 @@ def delete_employee(name):
 # update_car(reg='su17778', year='2023', model='Camry', make='Toyata', capacity='5', status='Available')
 # update_car(reg='SV14567', year='2003', model='240', make='Volvo', capacity='5', status='Available')
 
+# customer(name='Tove Olsen', age='72', adress='Stasjonsgaten 41, 3232 Volda')
