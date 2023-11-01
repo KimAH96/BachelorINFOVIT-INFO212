@@ -26,7 +26,7 @@ def save_car_info():
     return save_car(record['make'], record['model'], record['reg'], record['year'], record['capacity'])
 
 # The method uses the registration number to find the car
-# object from database and updates other informaiton from
+# object from database and updates other information from
 # the information provided as input in the json object
 
 
@@ -47,4 +47,13 @@ def delete_car_info():
     return findAllCars()
 
 
+#denne metoden brukes for å registrere at en kunde lager en booking av bil
+#metoden må testes. usikker på hvordan den skal lages
+
+
+@app.route('/order_booking', methods=['POST', 'PUT'])
+def booking_customer():
+    record = json.loads(request.data) 
+    print(record)
+    return orderCar()
 

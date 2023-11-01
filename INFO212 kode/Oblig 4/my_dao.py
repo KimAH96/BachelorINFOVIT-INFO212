@@ -122,6 +122,33 @@ def delete_employee(name):
         "MATCH (a:Employee{name: $name}) delete a;", name=name)
 
 
+#i funksjonen så brukes name fra customer som id, usikker på om det er lurere at customer-nodes har en egen unik id som feks af432
+#oppgaven sier også at "The system must check that the customer with customer-id has not booked other cars"
+#så det må lages en slags betingelse/query-sjekk på at kunden allerede ikke har en booking fra før av
+
+
+#relationship booking
+
+def orderCar(name, reg):
+    _get_connection().execute_query(
+        "MATCH (p:Customer{name: $name}) MATCH (c:Car{reg: $reg}) MERGE (p)-[:BOOKED]->(c) SET c.status = 'Booked'", name=name, reg=reg
+        )
+
+
+
+#cancel booking. Denne funksjonen kan ta litt utgangspunkt i delete-car funksjonen. 
+def cancel_booking(name, reg):
+
+
+
+
+
+
+
+
+
+
+
 # result = save_car(make="Toyota", model="Camry", reg="XYZ123", year=2023, capacity=5)
 # print(result)
 
