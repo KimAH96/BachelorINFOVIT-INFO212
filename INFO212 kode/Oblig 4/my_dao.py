@@ -135,7 +135,7 @@ def orderCar(name, reg):
         )
         
 
-def rent_car(customer_id, car_id):  # Uferdig
+def rent_car1(customer_id, car_id):  # Uferdig - trenger kanskje bare orderCar funksjonen?
     _get_connection().execute_query(
         "MATCH (c:Customer{id: $customer_id}), (car:Car{id: $car_id}) CREATE (c)-[:RENTS]->(car)", customer_id=customer_id, car_id=car_id)
 
@@ -143,7 +143,12 @@ def rent_car(customer_id, car_id):  # Uferdig
 def cancel_booking(name, reg):
     _get_connection().execute_query(
         "MATCH (p:Customer{name: $name})-[b:BOOKED]->(c:Car{reg: $reg}) DELETE b set c.status = 'Available'",name=name, reg=reg)
-        
+
+
+def rent_car(name, reg):
+    _get_connection().execute_query(
+    "MATCH (p:Customer {name: $name})-[b:BOOKED]->(c:Car{reg: $reg}) CREATE (p)-[:RENTED]->(c) DELETE b set c.status = 'Rented';", name=name, reg=reg)
+
 
 
 
@@ -172,4 +177,4 @@ def cancel_booking(name, reg):
 
 # orderCar(name='Per Hansen', reg='XYZ123')
 orderCar(name='Per Hansen', reg='ZZZ123')
-# cancel_booking(name='Per Hansen', reg='XYZ123')
+# cancel_booking(name='Per Hansen', reg='ZZZ123')
