@@ -127,17 +127,20 @@ def delete_employee(name):
 #så det må lages en slags betingelse/query-sjekk på at kunden allerede ikke har en booking fra før av
 
 
-#relationship booking
+
 
 def orderCar(name, reg):
     _get_connection().execute_query(
         "MATCH (p:Customer{name: $name}) MATCH (c:Car{reg: $reg}) MERGE (p)-[:BOOKED]->(c) SET c.status = 'Booked'", name=name, reg=reg
         )
 
-
+def rent_car(customer_id, car_id):  # Uferdig
+    _get_connection().execute_query(
+        "MATCH (c:Customer{id: $customer_id}), (car:Car{id: $car_id}) CREATE (c)-[:RENTS]->(car)", customer_id=customer_id, car_id=car_id)
 
 #cancel booking. Denne funksjonen kan ta litt utgangspunkt i delete-car funksjonen. 
 def cancel_booking(name, reg):
+    pass
 
 
 
@@ -162,3 +165,4 @@ def cancel_booking(name, reg):
 # update_car(reg='SV14567', year='2003', model='240', make='Volvo', capacity='5', status='Available')
 
 # customer(name='Tove Olsen', age='72', adress='Stasjonsgaten 41, 3232 Volda')
+# update_customer(name='Jan Nygaard', age='33', adress='Gamle Steinestøvegen 55, 5108 Hordvik')
