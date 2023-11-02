@@ -50,7 +50,6 @@ def delete_car_info():
 #denne metoden brukes for å registrere at en kunde lager en booking av bil
 #metoden må testes. usikker på hvordan den skal lages
 
-
 @app.route('/order_booking', methods=['POST', 'PUT'])
 def booking_customer():
     record = json.loads(request.data) 

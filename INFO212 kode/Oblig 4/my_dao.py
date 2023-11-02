@@ -153,15 +153,12 @@ def rent_car(name, reg):
 #hvis denne denne har damaged som condition så skal status på bil-noden endres til "Damaged"
 #hvis condition er ok/noe annet enn damaged, så skal status på bil-noden endres til "ok"
 #funksjonen må også sikre seg at customer har leid den aktuelle bilen 
-#uferdig kode
+#Ferdig kode, fungerer som tenkt
 def return_car(name, reg, condition):
     if condition == 'Damaged':
-        _get_connection().execute_query("MATCH (p:Customer {name: $name})-[b:BOOKED]->(c:Car{reg: $reg}) CREATE (p)-[:RENTED]->(c) DELETE b set c.status = 'Rented';", name=name, reg=reg)
+        _get_connection().execute_query("MATCH (p:Customer {name: $name})-[r:RENTED]->(c:Car{reg: $reg}) DELETE r set c.status = 'Damaged';", name=name, reg=reg)
     else:
-        _get_connection().execute_query("MATCH (p:Customer {name: $name})-[b:BOOKED]->(c:Car{reg: $reg}) CREATE (p)-[:RENTED]->(c) DELETE b set c.status = 'Rented';", name=name, reg=reg)
-
-
-
+        _get_connection().execute_query("MATCH (p:Customer {name: $name})-[r:RENTED]->(c:Car{reg: $reg}) DELETE r set c.status = 'Available';", name=name, reg=reg)
 
 
 
@@ -169,19 +166,15 @@ def return_car(name, reg, condition):
 
 # result = save_car(make="Toyota", model="Camry", reg="XYZ123", year=2023, capacity=5)
 # print(result)
-
 # customer(name='Per Hansen', age='24', adress='Skolegaten 1b, 2348 Skolebyem')
 # employee(name='Thor Thodesen', age='39', adress='Bilveien 23, 3929 LangVekkIStan', branch='Bergen')
-
 # update_car(reg='ZZZ123', year='2013', model='A3', make='Audi', capacity='5', status='Available')
-
 # update_car(reg='XYZ123', year='2023', model='Camry', make='Toyota', capacity='5', status='Available')
 # update_car(reg='su17778', year='2023', model='Camry', make='Toyata', capacity='5', status='Available')
 # update_car(reg='SV14567', year='2003', model='240', make='Volvo', capacity='5', status='Available')
-
 # customer(name='Tove Olsen', age='72', adress='Stasjonsgaten 41, 3232 Volda')
 # update_customer(name='Jan Nygaard', age='33', adress='Gamle Steinestøvegen 55, 5108 Hordvik')
-
 # orderCar(name='Per Hansen', reg='XYZ123')
-orderCar(name='Per Hansen', reg='ZZZ123')
-# cancel_booking(name='Per Hansen', reg='ZZZ123')
+# orderCar(name='Per Hansen', reg='ZZZ123')
+# rent_car(name='Per Hansen', reg='ZZZ123')
+# return_car(name='Per Hansen', reg='ZZZ123', condition='Damaged')
