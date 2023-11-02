@@ -128,19 +128,22 @@ def delete_employee(name):
 
 
 
-
+#Denne funker som den skal.
 def orderCar(name, reg):
     _get_connection().execute_query(
-        "MATCH (p:Customer{name: $name}) MATCH (c:Car{reg: $reg}) MERGE (p)-[:BOOKED]->(c) SET c.status = 'Booked'", name=name, reg=reg
+        "MATCH (p:Customer{name: $name}) WHERE NOT ((p)-[:BOOKED]->(:Car)) MATCH (c:Car{reg: $reg}) CREATE (p)-[b:BOOKED]->(c)SET c.status = 'Booked';", name=name, reg=reg
         )
+        
 
 def rent_car(customer_id, car_id):  # Uferdig
     _get_connection().execute_query(
         "MATCH (c:Customer{id: $customer_id}), (car:Car{id: $car_id}) CREATE (c)-[:RENTS]->(car)", customer_id=customer_id, car_id=car_id)
 
-#cancel booking. Denne funksjonen kan ta litt utgangspunkt i delete-car funksjonen. 
+#cancel booking. Denne funksjonen tar utgangspunkt i delete-car funksjonen. Den funker! 
 def cancel_booking(name, reg):
-    pass
+    _get_connection().execute_query(
+        "MATCH (p:Customer{name: $name})-[b:BOOKED]->(c:Car{reg: $reg}) DELETE b set c.status = 'Available'",name=name, reg=reg)
+        
 
 
 
@@ -166,3 +169,7 @@ def cancel_booking(name, reg):
 
 # customer(name='Tove Olsen', age='72', adress='Stasjonsgaten 41, 3232 Volda')
 # update_customer(name='Jan Nygaard', age='33', adress='Gamle Steinestøvegen 55, 5108 Hordvik')
+
+# orderCar(name='Per Hansen', reg='XYZ123')
+orderCar(name='Per Hansen', reg='ZZZ123')
+# cancel_booking(name='Per Hansen', reg='XYZ123')
