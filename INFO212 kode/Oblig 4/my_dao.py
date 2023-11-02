@@ -150,8 +150,15 @@ def rent_car(name, reg):
     "MATCH (p:Customer {name: $name})-[b:BOOKED]->(c:Car{reg: $reg}) CREATE (p)-[:RENTED]->(c) DELETE b set c.status = 'Rented';", name=name, reg=reg)
 
 
-
-
+#hvis denne denne har damaged som condition så skal status på bil-noden endres til "Damaged"
+#hvis condition er ok/noe annet enn damaged, så skal status på bil-noden endres til "ok"
+#funksjonen må også sikre seg at customer har leid den aktuelle bilen 
+#uferdig kode
+def return_car(name, reg, condition):
+    if condition == 'Damaged':
+        _get_connection().execute_query("MATCH (p:Customer {name: $name})-[b:BOOKED]->(c:Car{reg: $reg}) CREATE (p)-[:RENTED]->(c) DELETE b set c.status = 'Rented';", name=name, reg=reg)
+    else:
+        _get_connection().execute_query("MATCH (p:Customer {name: $name})-[b:BOOKED]->(c:Car{reg: $reg}) CREATE (p)-[:RENTED]->(c) DELETE b set c.status = 'Rented';", name=name, reg=reg)
 
 
 
