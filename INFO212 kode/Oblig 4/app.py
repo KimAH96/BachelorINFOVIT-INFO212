@@ -52,12 +52,19 @@ def delete_car_info():
 
 # denne metoden brukes for å registrere at en kunde lager en booking av bil
 # metoden må testes. usikker på hvordan den skal lages
-
-@app.route('/order_booking', methods=['POST', 'PUT'])
+@app.route('/order_car', methods=['POST', 'PUT'])
 def booking_customer():
     record = json.loads(request.data)
     print(record)
     return orderCar()
+
+
+# Checks booking, changes car status to avaliable and deletes relationship
+@app.route('/cancel_car', methods=['PUT'])
+def cancel_car_booking():
+    record = json.loads(request.data)
+    print(record)
+    return cancel_booking(record['name'], record['reg'])
 
 
 if __name__ == '__main__':
