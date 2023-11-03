@@ -5,9 +5,11 @@ from my_dao import *
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def hello_world():
     return 'Hello World'
+
 
 @app.route('/get_cars', methods=['GET'])
 def query_records():
@@ -76,6 +78,14 @@ def rent_car_booking():
     record = json.loads(request.data)
     print(record)
     return rent_car(record['name'], record['reg'])
+
+
+# Returns the car
+@app.route('/return_car', methods=['PUT'])
+def return_car_booking():
+    record = json.loads(request.data)
+    print(record)
+    return return_car(record['name'], record['reg'], record['condition'])
 
 
 if __name__ == '__main__':
