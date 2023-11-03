@@ -57,11 +57,18 @@ def delete_car_info():
 
 # denne metoden brukes for å registrere at en kunde lager en booking av bil
 # metoden må testes. usikker på hvordan den skal lages
+# @app.route('/order_car', methods=['POST', 'PUT'])
+# def booking_customer():
+#     record = json.loads(request.data)
+#     print(record)
+#     return orderCar(record['name'], record['reg'])
+
 @app.route('/order_car', methods=['POST', 'PUT'])
 def booking_customer():
     record = json.loads(request.data)
     print(record)
-    return orderCar(record['name'], record['reg'])
+    print(orderCar(record['name'], record['reg']))
+    return jsonify({"Message":"Test"})
 
 
 # Checks booking, changes car status to avaliable and deletes relationship
