@@ -47,14 +47,12 @@ def delete_car_info():
     return findAllCars()
 
 
-#denne metoden brukes for å registrere at en kunde lager en booking av bil
-#metoden må testes. usikker på hvordan den skal lages
+# denne metoden brukes for å registrere at en kunde lager en booking av bil
+# metoden må testes. usikker på hvordan den skal lages
 
 @app.route('/order_booking', methods=['POST', 'PUT'])
 def booking_customer():
-    record = json.loads(request.data) 
+    record = json.loads(request.data)
     print(record)
-    orderCar(record['name'])
-    orderCar(record['reg'])
+    orderCar(record['name', 'reg'])
     return orderCar()
-
