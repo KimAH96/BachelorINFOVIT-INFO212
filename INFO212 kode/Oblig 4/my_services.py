@@ -23,7 +23,7 @@ def find_car_by_reg_number():
 def save_car_info():
     record = json.loads(request.data)
     print(record)
-    return save_car(record['make'], record['model'], record['reg'], record['year'], record['capacity'])
+    return save_car(record['make'], record['model'], record['reg'], record['year'], record['capacity'], record['status'])
 
 # The method uses the registration number to find the car
 # object from database and updates other information from
@@ -54,5 +54,4 @@ def delete_car_info():
 def booking_customer():
     record = json.loads(request.data)
     print(record)
-    orderCar(record['name', 'reg'])
     return orderCar()
