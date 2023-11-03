@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, Flask
+from flask import render_template, request, redirect, url_for, Flask, jsonify
 from neo4j import GraphDatabase
 from my_dao import *
 
