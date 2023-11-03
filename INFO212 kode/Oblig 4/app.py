@@ -56,7 +56,7 @@ def delete_car_info():
 def booking_customer():
     record = json.loads(request.data)
     print(record)
-    return orderCar()
+    return orderCar(record['name'], record['reg'])
 
 
 # Checks booking, changes car status to avaliable and deletes relationship
