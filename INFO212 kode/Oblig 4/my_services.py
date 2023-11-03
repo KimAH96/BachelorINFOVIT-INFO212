@@ -54,5 +54,7 @@ def delete_car_info():
 def booking_customer():
     record = json.loads(request.data) 
     print(record)
+    orderCar(record['name'])
+    orderCar(record['reg'])
     return orderCar()
 
