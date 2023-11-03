@@ -29,7 +29,7 @@ def save_car_info():
 # object from database and updates other information from
 # the information provided as input in the json object
 
-
+#trenger å oppdatere med record['status'] på return linjen
 @app.route('/update_car', methods=['PUT'])
 def update_car_info():
     record = json.loads(request.data)
