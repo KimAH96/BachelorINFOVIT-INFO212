@@ -173,7 +173,5 @@ def return_car(name, reg, condition):
 # update_car(reg='SV14567', year='2003', model='240', make='Volvo', capacity='5', status='Available')
 # customer(name='Tove Olsen', age='72', adress='Stasjonsgaten 41, 3232 Volda')
 # update_customer(name='Jan Nygaard', age='33', adress='Gamle Steinestøvegen 55, 5108 Hordvik')
-# orderCar(name='Per Hansen', reg='XYZ123')
-orderCar(name='Jan Nygaard', reg='SV14567')
 # rent_car(name='Per Hansen', reg='ZZZ123')
 # return_car(name='Per Hansen', reg='ZZZ123', condition='Damaged')
