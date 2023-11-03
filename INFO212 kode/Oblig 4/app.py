@@ -67,5 +67,13 @@ def cancel_car_booking():
     return cancel_booking(record['name'], record['reg'])
 
 
+# Customer rents the car it has booked
+@app.route('/rent_car', methods=['PUT'])
+def rent_car_booking():
+    record = json.loads(request.data)
+    print(record)
+    return rent_car(record['name'], record['reg'])
+
+
 if __name__ == '__main__':
     app.run(debug=True)
