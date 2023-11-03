@@ -131,7 +131,7 @@ def delete_employee(name):
 #Denne funker som den skal.
 def orderCar(name, reg):
     _get_connection().execute_query(
-        "MATCH (p:Customer {name: 'Tove Olsen'}) WHERE NOT (p)-[:BOOKED]->(:Car {status: 'Booked'}) MATCH (c:Car {reg: 'ZZZ123', status: 'Available'}) CREATE (p)-[b:BOOKED]->(c)SET c.status = 'Booked';", name=name, reg=reg)
+        "MATCH (p:Customer {name: $name}) WHERE NOT (p)-[:BOOKED]->(:Car {status: 'BOOKED'}) MATCH (c:Car{reg: $reg, status: 'Available'}) CREATE (p)-[b:BOOKED]->(c) SET c.status = 'BOOKED';", name=name, reg=reg)
         
 
 def rent_car1(customer_id, car_id):  # Uferdig - trenger kanskje bare orderCar funksjonen?
@@ -174,6 +174,6 @@ def return_car(name, reg, condition):
 # customer(name='Tove Olsen', age='72', adress='Stasjonsgaten 41, 3232 Volda')
 # update_customer(name='Jan Nygaard', age='33', adress='Gamle Steinestøvegen 55, 5108 Hordvik')
 # orderCar(name='Per Hansen', reg='XYZ123')
-orderCar(name='Per Hansen', reg='ZZZ123')
+orderCar(name='Jan Nygaard', reg='SV14567')
 # rent_car(name='Per Hansen', reg='ZZZ123')
 # return_car(name='Per Hansen', reg='ZZZ123', condition='Damaged')
