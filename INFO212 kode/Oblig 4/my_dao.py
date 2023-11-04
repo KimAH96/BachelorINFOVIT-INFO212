@@ -175,3 +175,5 @@ def return_car(name, reg, condition):
 # update_customer(name='Jan Nygaard', age='33', adress='Gamle Steinestøvegen 55, 5108 Hordvik')
 # rent_car(name='Per Hansen', reg='ZZZ123')
 # return_car(name='Per Hansen', reg='ZZZ123', condition='Damaged')
+# customer(name='Ole Olesen', age='45', adress='Hakkebakkeskogen 12')
+# cancel_booking(name="Ole Olesen", reg='su17778')

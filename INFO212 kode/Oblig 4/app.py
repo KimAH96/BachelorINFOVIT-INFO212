@@ -65,10 +65,13 @@ def delete_car_info():
 
 @app.route('/order_car', methods=['POST', 'PUT'])
 def booking_customer():
-    record = json.loads(request.data)
+    record = dict(json.loads(request.data))
     print(record)
     print(orderCar(record['name'], record['reg']))
-    return jsonify({"Message":"Test"})
+    reg_nr = record.get('reg')
+    message = f"Bookingen av {reg_nr} var vellykket"
+    data = {"Message": message}
+    return jsonify(data)
 
 
 # Checks booking, changes car status to avaliable and deletes relationship
@@ -76,7 +79,11 @@ def booking_customer():
 def cancel_car_booking():
     record = json.loads(request.data)
     print(record)
-    return cancel_booking(record['name'], record['reg'])
+    print(cancel_booking(record['name'], record['reg']))
+    reg_nr = record.get('reg')
+    message = f"Bookingen av {reg_nr} var vellykket"
+    data = {"Message": message}
+    return jsonify(data)
 
 
 # Customer rents the car it has booked
